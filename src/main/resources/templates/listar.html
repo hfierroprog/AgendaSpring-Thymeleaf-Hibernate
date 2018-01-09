@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head th:replace="layout/layout :: head"></head>
+    <body>
+        <header th:replace="layout/layout :: header"></header>
+        
+        
+        <div class="container py-4">
+            <div class="card bg-light">
+                <div class="card-header" th:text="${titulo}"></div>
+                <div class="card-body">
+                    <h4 class="card-title">
+                        <a class="btn btn-success btn-xs" th:href="@{/form}">Agregar Contacto</a>
+                    </h4>
+                    
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Id</th>
+                                <th>Nombre</th>
+                                <th>Apellido</th>
+                                <th>Telefono</th>
+                                <th>Email</th>
+                                <th>Direccion</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="contacto : ${contactos}">
+                                <td th:text="${contacto.Id}"></td>
+                                <td th:text="${contacto.Nombre}"></td>
+                                <td th:text="${contacto.Apellido}"></td>
+                                <td th:text="${contacto.Telefono}"></td>
+                                <td th:text="${contacto.Email}"></td>
+                                <td th:text="${contacto.Direccion}"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    
+                </div>
+            </div>
+        </div>
+        
+        
+        <footer th:replace="layout/layout :: footer"></footer>
+    </body>
+</html>
