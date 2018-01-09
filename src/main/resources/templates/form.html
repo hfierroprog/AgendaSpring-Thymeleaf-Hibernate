@@ -2,10 +2,42 @@
 <html xmlns:th="http://www.thymeleaf.org">
     <head th:replace="layout/layout :: head"></head>
     <body>
-        
+
         <header th:replace="layout/layout :: header"></header>
-        
-        
+
+        <div class="container">
+            <h1 th:text="${titulo}" class="text-secondary border border-success border-left-0 border-top-0 border-right-0 "></h1>
+            <form th:action="@{/form}" method="post" th:object="${contacto}" >
+                <table>
+                    <tr>
+                        <td>Nombre</td>
+                        <td><input type="text" th:field="*{Nombre}" class="form-control" /></td>
+                    </tr>
+                    <tr>
+                        <td>Apellido</td>
+                        <td><input type="text" th:field="*{Apellido}" class="form-control" /> </td>
+                    </tr>
+                    <tr>
+                        <td>Telefono</td>
+                        <td><input type="text" th:field="*{Telefono}" class="form-control" /> </td>
+                    </tr>
+                    <tr>
+                        <td>Email</td>
+                        <td><input type="text" th:field="*{Email}" class="form-control" /></td>
+                    </tr>
+                    <tr>
+                        <td>Direccion</td>
+                        <td><input type="text" th:field="*{Direccion}" class="form-control" /></td>
+                    </tr>
+                    <tr>
+                        <td><input type="submit" class="btn btn-success"/></td>
+                    </tr>
+
+                </table>
+                <input type="hidden" th:field="*{Id}"/>
+            </form>
+        </div>
+
         <footer th:replace="layout/layout :: footer"></footer>
     </body>
 </html>

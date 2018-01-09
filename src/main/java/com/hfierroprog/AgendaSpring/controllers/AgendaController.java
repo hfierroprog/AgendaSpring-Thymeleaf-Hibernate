@@ -1,9 +1,11 @@
 package com.hfierroprog.AgendaSpring.controllers;
 
+import com.hfierroprog.AgendaSpring.models.Entity.Contacto;
 import com.hfierroprog.AgendaSpring.models.Service.IContactoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -31,6 +33,9 @@ public class AgendaController {
     @RequestMapping(value = "/form")
     public String Agregar(Model model){
         
+        Contacto contacto = new Contacto();
+        
+        model.addAttribute("contacto", contacto);
         model.addAttribute("titulo", "Agregar Contacto!");
         model.addAttribute("paginaActual", "form");
         
@@ -38,7 +43,14 @@ public class AgendaController {
     }
     
     @RequestMapping(value = "/form",method = RequestMethod.POST)
-    public String validar(Model model){
-        return null;
+    public String validar(Contacto contacto,Model model,BindingResult result){
+        
+        if(result.hasErrors()){
+            return "form";
+        }
+        
+        contactoService.Save(contacto);
+        
+        return "redirect:/listar";
     }
 }
