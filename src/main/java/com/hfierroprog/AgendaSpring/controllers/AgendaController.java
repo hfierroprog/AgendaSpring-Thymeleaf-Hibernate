@@ -6,10 +6,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
 @Controller
+@SessionAttributes("contacto")
 public class AgendaController {
     
     @Autowired
@@ -50,6 +53,14 @@ public class AgendaController {
         }
         
         contactoService.Save(contacto);
+        
+        return "redirect:/listar";
+    }
+    
+    @RequestMapping(value = "/eliminar/{id}")
+    public String eliminar(@PathVariable(value = "id") Long id,Model model){
+        
+        contactoService.Delete(id);
         
         return "redirect:/listar";
     }

@@ -22,6 +22,7 @@
                                 <th>Telefono</th>
                                 <th>Email</th>
                                 <th>Direccion</th>
+                                <th>Eliminar</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -32,6 +33,7 @@
                                 <td th:text="${contacto.Telefono}"></td>
                                 <td th:text="${contacto.Email}"></td>
                                 <td th:text="${contacto.Direccion}"></td>
+                                <td><a th:href="@{/eliminar/} + ${contacto.id}" >Eliminar</a></td>
                             </tr>
                         </tbody>
                     </table>
@@ -42,5 +44,6 @@
         
         
         <footer th:replace="layout/layout :: footer"></footer>
+        
     </body>
 </html>
